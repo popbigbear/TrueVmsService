@@ -818,7 +818,7 @@ namespace TrueVmsService
 
 
                 //string cmdSelect = "SELECT WORKPERMIT_CODE,WORK_END_DATETIME,cust_project.CUST_PROJECT_NAME FROM workpermit inner join cust_project on workpermit.CUST_PROJECT_ID = cust_project.CUST_PROJECT_ID  where workpermit.status = 1 and TIMESTAMPDIFF(day, work_end_datetime, NOW()) >= -1";
-                string cmdSelect = "SELECT WORKPERMIT_CODE,WORK_END_DATETIME,CUST_PROJECT_NAME,UPDATER_EMAIL,CREATED_BY_EMAIL FROM rpt_workpermit_vw where rpt_workpermit_vw.status = 1 and TIMESTAMPDIFF(day, work_end_datetime, NOW()) >= -1";
+                string cmdSelect = "SELECT WORKPERMIT_CODE,WORK_END_DATETIME,CUST_PROJECT_NAME,UPDATER_EMAIL,CREATED_BY_EMAIL,CUST_COMPANY_NAME FROM rpt_workpermit_vw where rpt_workpermit_vw.status = 1 and TIMESTAMPDIFF(day, work_end_datetime, NOW()) >= -1";
                 log.Info(cmdSelect);
                 cmd.CommandText = cmdSelect;
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -830,6 +830,7 @@ namespace TrueVmsService
                     string WORKPERMIT_CODE = reader.GetString("WORKPERMIT_CODE");
                     string WORK_END_DATETIME = reader.GetString("WORK_END_DATETIME");
                     string CUST_PROJECT_NAME = reader.GetString("CUST_PROJECT_NAME");
+                    string CUST_NAME = reader.GetString("CUST_COMPANY_NAME");
 
 
                     //string UPDATER_EMAIL = reader.GetString("UPDATER_EMAIL");
@@ -837,8 +838,8 @@ namespace TrueVmsService
 
                     log.Info("Warning workpermit expire to : " + CREATED_BY_EMAIL);
 
-                    String body = MailManager.getWorkpermitExpireBody(WORKPERMIT_CODE, WORK_END_DATETIME, CUST_PROJECT_NAME);
-                    MailManager.QuickSend(CREATED_BY_EMAIL, "[Warning] Workpermit expire", body);
+                    String body = MailManager.getWorkpermitExpireBody(WORKPERMIT_CODE, WORK_END_DATETIME, CUST_PROJECT_NAME, CUST_NAME);
+                    MailManager.QuickSend(CREATED_BY_EMAIL, "True IDC Site entry: Work permit expiry reminder "+ WORKPERMIT_CODE, body);
                 }
                 reader.Close();
 

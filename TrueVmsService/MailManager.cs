@@ -88,7 +88,7 @@ namespace TrueVmsService
         }
 
 
-        public static string getWorkpermitExpireBody(string workpermit,  string endDate, string project)
+        public static string getWorkpermitExpireBody(string workpermit,  string endDate, string project, string customerName)
         {
 
             string webserver = ConfigurationManager.AppSettings["webserver"];
@@ -108,13 +108,29 @@ namespace TrueVmsService
             body += "<br />";
 
 
-            body += "Dear Administrator, <br /> " +
-                          "<p>Your workpermit time is going out. </p>  " +
+            body += "Dear "+ customerName + ", <br /> " +
+                          "<p>This is a reminder that your work permit "+workpermit+" will expire in 24 hours, and all of your </p>  " +
 
-                          "<p><left> workpermit : " + workpermit + "(project "+project+ ") time is going out at : " + endDate + "</left><p> <br /> " +
+                          "<p><left>staff will not be allowed to access the site. Please open a new work permit for your staff.</left><p> <br /> " +
+                          "<p><left>If you have any other questions, please call 02-494-8300 or email: customerservice@trueidc.com</left><p> <br /> " +
 
-                          "Sincerely,  <br /> " +
-                          "Your True IDC Account Administrator ";
+                          "<p><left>*************************************************************************************</left><p> <br /> " +
+                          "<p><left>This is an automated email by TrueIDC. Please do not reply to this email directly.</left><p> <br /> " ;
+
+            body += string.Format(@"
+                    <table>
+                     <tr>
+                            <td>
+                       <img src=""{0}/dist/img/trueidclogo2.png"" width=""100%"" height=""100%""/>
+                            </td>
+                            <td>
+                       Tel : +66(0) 2 494 8300<br> 
+                       E-mail: customerservice@trueidc.com<br>
+                       Website: www.trueidc.com<br>
+                            </td>
+                     </tr>
+                    </table>
+                    ", webserver);
 
 
 
