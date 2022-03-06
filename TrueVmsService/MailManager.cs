@@ -153,7 +153,7 @@ namespace TrueVmsService
                 log.Info("Send mail to " + ToEmail);
 
                 //message.To.Add(ToEmail);
-                message.Bcc.Add("akkachat.t@hitop.co.th");
+                //message.Bcc.Add("akkachat.t@hitop.co.th");
 
                 string smtpServerName = ConfigurationManager.AppSettings["mailSMTPServerName"];
 
