@@ -47,6 +47,21 @@ namespace TrueVmsService
                           "Sincerely,  <br /> " +
                           "Your True IDC Account Administrator ";
 
+            body += string.Format(@"
+                    <table>
+                     <tr>
+                            <td>
+                       <img src=""{0}/dist/img/trueidclogo2.png"" width=""100%"" height=""100%""/>
+                            </td>
+                            <td>
+                       Tel : +66(0) 2 494 8300<br> 
+                       E-mail: customerservice@trueidc.com<br>
+                       Website: www.trueidc.com<br>
+                            </td>
+                     </tr>
+                    </table>
+                    ", webserver);
+
 
 
             return body;
@@ -81,6 +96,21 @@ namespace TrueVmsService
 
                           "Sincerely,  <br /> " +
                           "Your True IDC Account Administrator ";
+
+            body += string.Format(@"
+                    <table>
+                     <tr>
+                            <td>
+                       <img src=""{0}/dist/img/trueidclogo2.png"" width=""100%"" height=""100%""/>
+                            </td>
+                            <td>
+                       Tel : +66(0) 2 494 8300<br> 
+                       E-mail: customerservice@trueidc.com<br>
+                       Website: www.trueidc.com<br>
+                            </td>
+                     </tr>
+                    </table>
+                    ", webserver);
 
 
 
