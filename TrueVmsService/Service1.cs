@@ -94,12 +94,15 @@ namespace TrueVmsService
                 clearExpireProject();
                 clearExpireWorkpermit();
                 clearExpireStaff();
+               
+                /*
                 sendingReviewProject();
                 sendingReviewWorkpermit();
 
                 sendingEmailLoop3();
                 sendingEmailLoop2();
                 sendingEmailLoop1();
+                */
 
                 if(SendingActivateEmail == 1)
                     sendingActivateEmail();
@@ -707,6 +710,8 @@ namespace TrueVmsService
 
 
         string warninEmail = ConfigurationManager.AppSettings["warninEmail"];
+        int warninPrjExpire = Convert.ToInt32(ConfigurationManager.AppSettings["warningProjectExpire"]);
+
 
         private void sendingReviewProject()
         {
@@ -741,7 +746,7 @@ namespace TrueVmsService
 
 
 
-                string cmdSelect = "SELECT CUSTOMER_CODE,CUST_PROJECT_NAME,NEXT_REVIEW_DATE FROM cust_project where status = 9 and  TIMESTAMPDIFF(day, next_review_date, NOW()) >= -15";
+                string cmdSelect = "SELECT CUSTOMER_CODE,CUST_PROJECT_NAME,NEXT_REVIEW_DATE FROM cust_project where status = 9 and  TIMESTAMPDIFF(day, next_review_date, NOW()) = "+ warninPrjExpire;
                 log.Info(cmdSelect);
                 cmd.CommandText = cmdSelect;
                 MySqlDataReader reader = cmd.ExecuteReader();
